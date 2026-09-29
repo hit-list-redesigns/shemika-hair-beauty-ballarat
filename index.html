@@ -55,7 +55,7 @@ p{margin:0}
 .num{font-variant-numeric:lining-nums tabular-nums}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:0 1.6rem;border-radius:999px;border:1px solid transparent;font-weight:600;font-size:1rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;white-space:nowrap;min-height:52px;padding:0 1.6rem;border-radius:999px;border:1px solid transparent;font-weight:600;font-size:1rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease)}
 .btn svg{width:18px;height:18px;flex:none}
 .btn-brass{background:var(--brass);color:var(--ink)}
 .btn-brass:hover{background:var(--brass-hi)}
@@ -72,7 +72,7 @@ p{margin:0}
 .hdr-in{height:100%;display:flex;align-items:center;gap:2rem;padding:0 var(--gutter)}
 .mark{display:inline-flex;flex-direction:column;text-decoration:none;line-height:1}
 .mark-name{font-family:var(--display);font-size:1.85rem;font-weight:500;letter-spacing:-.01em}
-.mark-sub{display:flex;align-items:center;gap:.5rem;margin-top:.3rem;font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--on-ink-2)}
+.mark-sub{white-space:nowrap;display:flex;align-items:center;gap:.5rem;margin-top:.3rem;font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--on-ink-2)}
 .mark-sub i{display:block;width:44px;height:0;border-top:1px dotted var(--brass);position:relative}
 .mark-sub i::after{content:"";position:absolute;left:18px;right:0;top:-1px;border-top:1px solid var(--brass)}
 .nav{display:flex;gap:2rem;margin-left:auto;font-size:.95rem}
@@ -112,9 +112,9 @@ p{margin:0}
 .seg-m{top:var(--ys);height:calc(var(--ym) - var(--ys));border-left-style:dashed}
 .seg-l{top:var(--ym);height:calc(var(--yl) - var(--ym))}
 .seg-tail{top:var(--yl);bottom:0;border-left:1px solid var(--ink-line)}
-.tick{position:absolute;right:0;top:var(--y);transform:translateY(-50%);width:var(--labelw);display:grid;grid-template-columns:1fr auto;column-gap:.9rem;align-items:baseline;text-align:right;padding:.55rem 1.4rem .55rem 0;background:none;border:0;cursor:pointer;color:var(--on-ink-2)}
-.tick::after{content:"";position:absolute;right:-44px;top:50%;width:44px;border-top:1px solid var(--brass);opacity:.9}
-.tick::before{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;border:1.5px solid var(--brass);background:var(--ink);transition:background-color .4s var(--ease), transform .4s var(--ease)}
+.tick{position:absolute;right:0;top:var(--y);transform:translateY(calc(var(--a, 50%) * -1));width:var(--labelw);display:grid;grid-template-columns:1fr auto;column-gap:.9rem;align-items:baseline;text-align:right;padding:.55rem 1.4rem .55rem 0;background:none;border:0;cursor:pointer;color:var(--on-ink-2)}
+.tick::after{content:"";position:absolute;right:-44px;top:var(--a, 50%);width:44px;border-top:1px solid var(--brass);opacity:.9}
+.tick::before{content:"";position:absolute;right:-7px;top:var(--a, 50%);width:12px;height:12px;margin-top:-6px;border-radius:50%;border:1.5px solid var(--brass);background:var(--ink);transition:background-color .4s var(--ease), transform .4s var(--ease)}
 .tick-name{font-family:var(--display);font-size:1.45rem;line-height:1;color:var(--on-ink);letter-spacing:-.01em}
 .tick-price{font-family:var(--display);font-size:1.45rem;line-height:1;color:var(--brass);grid-row:1 / span 2;grid-column:2;align-self:center}
 .tick-price small{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.06em;color:var(--on-ink-2);margin-bottom:.15rem;text-align:right}
@@ -140,7 +140,7 @@ p{margin:0}
   .js .tick[data-len="l"]{animation-delay:1.15s}
 }
 @keyframes draw{to{clip-path:inset(0 0 0 0)}}
-@keyframes tickin{from{opacity:0;transform:translate(-10px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+@keyframes tickin{from{opacity:0;transform:translate(-10px, calc(var(--a, 50%) * -1))}to{opacity:1;transform:translate(0, calc(var(--a, 50%) * -1))}}
 
 /* ---------- sections ---------- */
 .sec{padding:clamp(4.5rem, 9vw, 8.5rem) var(--gutter)}
@@ -341,9 +341,9 @@ dialog.book[open]{display:flex;flex-direction:column;animation:slidein .55s var(
   .nav,.hdr-tel{display:none}
   .hdr .btn{margin-left:auto;min-height:40px;padding:0 1.1rem}
   .mark-name{font-size:1.55rem}
-  .hero{--labelw:clamp(8.2rem, 30vw, 13rem);display:flex;flex-direction:column;height:auto}
-  .hero-stage{order:-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,var(--figw, 66%));padding-top:1rem;height:auto}
-  .stage-cap{display:block;grid-column:1 / -1;padding:0 var(--gutter) .9rem;font-size:.82rem;color:var(--on-ink-2)}
+  .hero{display:flex;flex-direction:column;height:auto}
+  .hero-stage{--figf:.58;--labelw:calc((100vw - var(--gutter)) * (1 - var(--figf)) - 4px);order:-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,calc(var(--figf) * 100%));padding:1.25rem 0 0 var(--gutter);height:auto}
+  .stage-cap{display:block;grid-column:1 / -1;padding:0 var(--gutter) 1.4rem 0;font-size:.82rem;color:var(--on-ink-2)}
   .stage-cap b{color:var(--on-ink);font-weight:500}
   .rule-cap{display:none}
   .hero-fig{height:auto;width:100%;aspect-ratio:3/4;grid-column:2}
@@ -355,6 +355,7 @@ dialog.book[open]{display:flex;flex-direction:column;animation:slidein .55s var(
   .tick-desc{font-size:.74rem}
   .dl{display:none}.ds{display:inline}
   .credit{top:10px;bottom:auto;right:10px;font-size:.72rem}
+  .hero-copy{padding-top:2.6rem}
   .sec-head,.prices,.appr,.proof,.visit{grid-template-columns:1fr}
   .price-side{position:static}
   .rack{grid-template-columns:repeat(2, minmax(0,1fr))}
@@ -364,9 +365,19 @@ dialog.book[open]{display:flex;flex-direction:column;animation:slidein .55s var(
   body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
   .foot{padding-bottom:2.4rem}
 }
-@media (min-width:640px) and (max-width:1023px){ .hero-stage{--figw:58%} }
+@media (min-width:640px) and (max-width:1023px){ .hero-stage{--figf:.56} }
 @media (max-width:560px){
   :root{--gutter:20px}
+  .hero-stage{--figf:.6}
+  .credit{display:none}
+  .tick{grid-template-columns:1fr;row-gap:.1rem;padding:.2rem .95rem .2rem 0}
+  .tick[data-len="s"]{--a:62%}
+  .tick[data-len="l"]{--a:24%}
+  .tick-name{font-size:1.15rem}
+  .tick-desc{grid-column:1;margin-top:0;font-size:.74rem}
+  .tick-price{grid-row:auto;grid-column:1;font-size:1.15rem;margin-top:.1rem}
+  .tick-price small{display:inline;margin:0 .3rem 0 0;font-size:.68rem}
+  .tick::after{width:18px;right:-18px}
   .mbar{padding-left:max(20px, env(safe-area-inset-left));padding-right:max(20px, env(safe-area-inset-right))}
   .bk-top,.steps,.bk-foot{padding-left:20px;padding-right:20px}
   .prow{grid-template-columns:minmax(0,1fr) auto;gap:.3rem 1rem}
@@ -382,6 +393,13 @@ dialog.book[open]{display:flex;flex-direction:column;animation:slidein .55s var(
   .close-rule{display:none}
   .frame figcaption{flex-direction:column;align-items:flex-start;gap:.25rem;font-size:.86rem}
   .bk-body{padding:1.1rem 20px}
+}
+@media (max-width:370px){
+  .hdr .btn{padding:0 .95rem;font-size:.9rem}
+  .mark-name{font-size:1.4rem}
+  .mark-sub{letter-spacing:.18em}
+  .mark-sub i{width:28px}
+  .mbar .btn{padding:0 1rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
